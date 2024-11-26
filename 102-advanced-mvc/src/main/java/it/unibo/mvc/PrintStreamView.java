@@ -62,7 +62,7 @@ public final class PrintStreamView implements DrawNumberView {
 
     @Override
     public void displayError(String message) {
-        JOptionPane.showMessageDialog(out, message);
+        out.println(message);
     }
 
 }

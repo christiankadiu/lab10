@@ -41,7 +41,7 @@ public final class DrawNumberApp implements DrawNumberViewObserver {
            while (st.hasMoreTokens()) {
                String s = st.nextToken();
                if (s.matches("minimum:")) {
-                   builder.setMin(Integer.parseInt(st.nextToken()));
+                   builder.setMin(Integer.parseInt(st.nextToken()) );
                } else if (s.matches("maximum:")) {
                    builder.setMax(Integer.parseInt(st.nextToken()));
                } else if (s.matches("attempts:")) {
@@ -87,7 +87,7 @@ public final class DrawNumberApp implements DrawNumberViewObserver {
     * @throws FileNotFoundException
     */
    public static void main(final String... args) throws FileNotFoundException, IOException {
-       new DrawNumberApp(new DrawNumberViewImpl(), new DrawNumberViewImpl(), );
+       new DrawNumberApp(new DrawNumberViewImpl(), new DrawNumberViewImpl(), new PrintStreamView(System.out), new PrintStreamView("output.txt"));
    }
 
 }
