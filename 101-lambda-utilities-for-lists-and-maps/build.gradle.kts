@@ -18,7 +18,11 @@ dependencies {
 
     // Use JUnit Jupiter Engine for testing.
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.11.3")
+
+    compileOnly("com.github.spotbugs:spotbugs-annotations:4.7.3") // Use the latest version
 }
+
+
 
 application {
     val main: String? by project

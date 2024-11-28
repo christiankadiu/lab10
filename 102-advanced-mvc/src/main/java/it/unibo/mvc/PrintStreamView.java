@@ -7,8 +7,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
-
-import javax.swing.JOptionPane;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 
 /**
  * This class implements a view that can write on any PrintStream.
@@ -21,19 +21,21 @@ public final class PrintStreamView implements DrawNumberView {
      * Builds a new PrintStreamView.
      *
      * @param stream the {@link PrintStream} where to write
+     * @throws UnsupportedEncodingException
      */
-    public PrintStreamView(final PrintStream stream) {
-        out = stream;
+    public PrintStreamView(final PrintStream stream) throws UnsupportedEncodingException {
+        out = new PrintStream(stream, true, StandardCharsets.UTF_8.name());
     }
 
     /**
      * Builds a {@link PrintStreamView} that writes on file, given a path.
      * 
      * @param path a file path
-     * @throws FileNotFoundException 
+     * @throws FileNotFoundException
+     * @throws UnsupportedEncodingException
      */
-    public PrintStreamView(final String path) throws FileNotFoundException {
-        out = new PrintStream(new FileOutputStream(new File(path)));
+    public PrintStreamView(final String path) throws FileNotFoundException, UnsupportedEncodingException {
+        out = new PrintStream(new FileOutputStream(new File(path)), true, StandardCharsets.UTF_8.name());
     }
 
     @Override
@@ -61,7 +63,7 @@ public final class PrintStreamView implements DrawNumberView {
     }
 
     @Override
-    public void displayError(String message) {
+    public void displayError(final String message) {
         out.println(message);
     }
 
